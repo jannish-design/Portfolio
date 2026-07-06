@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jannis Heinig — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0A0B0F;
+    --panel:#15171E;
+    --panel-2:#1C1F28;
+    --accent:#3D6BFF;
+    --accent-2:#7C93FF;
+    --paper:#F4F2EC;
+    --muted:#8891A0;
+    --line:#262A34;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{ margin:0; background:var(--ink); color:var(--paper); font-family:'Inter',sans-serif; overflow-x:hidden; }
+  h1,h2,h3,.display{ font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase; margin:0; }
+  .mono{ font-family:'Space Mono',monospace; }
+  a{ color:inherit; }
+
+  .ticker-wrap{ background:var(--accent); color:#fff; overflow:hidden; white-space:nowrap; height:34px; display:flex; align-items:center; border-bottom:2px solid var(--ink); }
+  .ticker{ display:inline-block; padding-left:100%; animation:ticker 26s linear infinite; font-family:'Space Mono',monospace; font-weight:700; font-size:13px; letter-spacing:0.08em; }
+  @keyframes ticker{ 0%{transform:translateX(0);} 100%{transform:translateX(-100%);} }
+
+  nav{ position:relative; z-index:50; display:flex; justify-content:space-between; align-items:center; padding:16px 5%; background:rgba(10,11,15,0.85); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .nav-name{ font-family:'Anton',sans-serif; font-size:18px; letter-spacing:0.03em; width:38px; height:38px; display:flex; align-items:center; justify-content:center; border-radius:50%; border:2px solid transparent; transition:border-color .25s, color .25s; }
+  .nav-name:hover{ border-color:var(--accent); color:var(--accent-2); }
+  .nav-links{ display:flex; gap:28px; align-items:center; }
+  .nav-links a{ text-decoration:none; color:var(--muted); font-size:13px; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; transition:color .2s; }
+  .nav-links a:hover{ color:var(--paper); }
+  .btn-linkedin{ background:var(--accent); color:#fff !important; padding:9px 18px; border-radius:100px; font-weight:800 !important; text-transform:uppercase; font-size:12px !important; letter-spacing:0.05em; transition:transform .2s, box-shadow .2s; display:inline-flex; align-items:center; gap:6px; }
+  .btn-linkedin:hover{ transform:translateY(-2px); box-shadow:0 6px 20px rgba(61,107,255,0.4); }
+
+  .hero{ min-height:88vh; display:flex; align-items:center; justify-content:center; padding:80px 5% 60px; position:relative; background:radial-gradient(circle at 15% 20%, rgba(61,107,255,0.14), transparent 40%), radial-gradient(circle at 85% 80%, rgba(61,107,255,0.08), transparent 40%); }
+  .hero-inner{ display:flex; align-items:center; gap:56px; max-width:1100px; width:100%; }
+  .hero-photo-wrap{ flex-shrink:0; position:relative; width:220px; height:220px; }
+  .hero-photo-wrap img{ width:100%; height:100%; object-fit:cover; border-radius:50%; border:4px solid var(--accent); box-shadow:0 0 0 8px rgba(61,107,255,0.12), 0 20px 50px rgba(0,0,0,0.5); transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease; }
+  .hero-photo-wrap:hover img{ transform:scale(1.06); box-shadow:0 0 0 12px rgba(61,107,255,0.22), 0 25px 60px rgba(0,0,0,0.6); border-color:var(--accent-2); }
+  .eyebrow{ font-family:'Space Mono',monospace; color:var(--accent-2); font-size:13px; letter-spacing:0.25em; font-weight:700; margin-bottom:14px; }
+  .hero h1{ font-size:clamp(42px,6vw,72px); line-height:0.95; color:var(--paper); }
+  .hero .role{ display:inline-block; margin-top:16px; background:var(--panel-2); border:1px solid var(--line); color:var(--accent-2); font-family:'Space Mono',monospace; font-weight:700; font-size:14px; padding:8px 16px; border-radius:8px; letter-spacing:0.05em; }
+  .hero p.tagline{ margin-top:22px; color:var(--muted); font-size:17px; line-height:1.6; max-width:480px; }
+  .hero-actions{ margin-top:30px; display:flex; gap:14px; }
+  .btn-primary{ background:var(--accent); color:#fff; padding:13px 26px; border-radius:100px; font-weight:800; text-transform:uppercase; font-size:13px; letter-spacing:0.05em; text-decoration:none; transition:transform .2s, box-shadow .2s; display:inline-flex; align-items:center; gap:8px; }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 10px 30px rgba(61,107,255,0.4); }
+  .btn-ghost{ border:1px solid var(--line); color:var(--paper); padding:13px 26px; border-radius:100px; font-weight:700; text-transform:uppercase; font-size:13px; letter-spacing:0.05em; text-decoration:none; transition:border-color .2s, background .2s; }
+  .btn-ghost:hover{ border-color:var(--muted); background:var(--panel-2); }
+
+  section.block{ padding:90px 5%; max-width:1200px; margin:0 auto; }
+  .section-head{ display:flex; align-items:baseline; gap:18px; margin-bottom:8px; flex-wrap:wrap; }
+  .section-head h2{ font-size:clamp(28px,4vw,44px); color:var(--paper); }
+  .section-sub{ color:var(--muted); font-size:15px; max-width:640px; margin-top:10px; margin-bottom:48px; line-height:1.6; }
+  .tag{ color:#fff; background:var(--accent); font-family:'Space Mono',monospace; font-weight:700; font-size:11px; padding:4px 10px; border-radius:5px; letter-spacing:0.04em; }
+  h3.subhead{ font-family:'Inter',sans-serif; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; font-size:15px; color:var(--accent-2); margin:48px 0 22px; }
+
+  .gallery{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:22px; }
+  .card{ background:var(--panel); border:1px solid var(--line); border-radius:14px; overflow:hidden; cursor:pointer; transition:transform .25s, border-color .25s, box-shadow .25s; position:relative; }
+  .card:hover{ transform:translateY(-6px); border-color:var(--accent); box-shadow:0 20px 40px rgba(0,0,0,0.4); }
+  .card img{ width:100%; display:block; aspect-ratio:4/5; object-fit:cover; }
+  .card-cap{ padding:14px 16px 18px; }
+  .card-cap .t{ font-weight:700; font-size:14.5px; color:var(--paper); }
+  .card-cap .d{ font-size:12.5px; color:var(--muted); margin-top:4px; line-height:1.5; }
+  .zoom-hint{ position:absolute; top:10px; right:10px; background:rgba(10,11,15,0.75); color:var(--paper); font-size:11px; font-family:'Space Mono',monospace; padding:5px 9px; border-radius:100px; opacity:0; transition:opacity .2s; }
+  .card:hover .zoom-hint{ opacity:1; }
+
+  .reels{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:26px; }
+  .reel-frame{ background:var(--panel); border:1px solid var(--line); border-radius:22px; padding:10px; transition:border-color .25s, transform .25s; }
+  .reel-frame:hover{ border-color:var(--accent); transform:translateY(-4px); }
+  .reel-frame video{ width:100%; aspect-ratio:9/16; object-fit:cover; border-radius:14px; background:#000; display:block; }
+  .reel-frame video:fullscreen{ object-fit:contain; width:100%; height:100%; }
+  .reel-frame video:-webkit-full-screen{ object-fit:contain; width:100%; height:100%; }
+  .reel-cap{ padding:14px 8px 8px; }
+  .reel-cap .t{ font-weight:700; font-size:14.5px; }
+  .reel-cap .d{ font-size:12.5px; color:var(--muted); margin-top:4px; line-height:1.5; }
+
+  .insta-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:22px; }
+  .insta-card{ position:relative; border-radius:16px; overflow:hidden; border:1px solid var(--line); cursor:pointer; text-decoration:none; display:block; aspect-ratio:4/5; transition:transform .25s, border-color .25s; }
+  .insta-card:hover{ transform:translateY(-6px); border-color:var(--accent); }
+  .insta-card img{ width:100%; height:100%; object-fit:cover; display:block; position:absolute; inset:0; }
+  .insta-card .veil{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,11,15,0) 40%, rgba(10,11,15,0.85) 100%); }
+  .insta-card .play{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:52px; height:52px; border-radius:50%; background:rgba(255,255,255,0.15); border:1.5px solid rgba(255,255,255,0.6); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; transition:background .2s; }
+  .insta-card:hover .play{ background:var(--accent); border-color:var(--accent); }
+  .insta-card .play svg{ width:16px; height:16px; margin-left:2px; }
+  .insta-card .lbl{ position:absolute; bottom:12px; left:14px; right:14px; font-size:13px; font-weight:700; }
+  .insta-card .ig-icon{ position:absolute; top:12px; right:12px; width:22px; height:22px; opacity:0.85; }
+
+  .podcast-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:22px; }
+  .podcast-card{ background:var(--panel); border:1px solid var(--line); border-radius:16px; overflow:hidden; text-decoration:none; display:flex; flex-direction:column; transition:transform .25s, border-color .25s, box-shadow .25s; }
+  .podcast-card:hover{ transform:translateY(-6px); border-color:#1DB954; box-shadow:0 20px 40px rgba(0,0,0,0.4); }
+  .podcast-cover{ position:relative; aspect-ratio:1/1; }
+  .podcast-cover img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .podcast-cover .play{ position:absolute; bottom:14px; right:14px; width:44px; height:44px; border-radius:50%; background:#1DB954; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.4); transition:transform .2s; }
+  .podcast-card:hover .podcast-cover .play{ transform:scale(1.1); }
+  .podcast-cover .play svg{ width:18px; height:18px; margin-left:2px; }
+  .podcast-body{ padding:16px 18px 20px; }
+  .podcast-body .show{ font-family:'Space Mono',monospace; font-size:11px; color:#1DB954; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; }
+  .podcast-body .t{ font-weight:700; font-size:15px; color:var(--paper); margin-top:6px; line-height:1.35; }
+  .podcast-body .meta{ font-size:12px; color:var(--muted); margin-top:6px; font-family:'Space Mono',monospace; }
+  .podcast-body .d{ font-size:12.5px; color:var(--muted); margin-top:10px; line-height:1.55; }
+
+  .lightbox{ position:fixed; inset:0; background:rgba(6,7,10,0.92); z-index:100; display:none; align-items:center; justify-content:center; padding:40px; }
+  .lightbox.open{ display:flex; }
+  .lightbox img{ max-width:min(90vw,780px); max-height:88vh; border-radius:10px; box-shadow:0 30px 80px rgba(0,0,0,0.6); }
+  .lightbox-close{ position:absolute; top:24px; right:5%; color:var(--paper); font-size:28px; cursor:pointer; font-family:'Space Mono',monospace; border:1px solid var(--line); width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+  .lightbox-close:hover{ border-color:var(--accent); }
+
+  footer{ padding:60px 5% 50px; text-align:center; border-top:1px solid var(--line); display:flex; flex-direction:column; align-items:center; gap:18px; }
+  footer .display{ font-size:26px; }
+  footer p{ color:var(--muted); font-size:14px; }
+
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  .note{ font-size:12.5px; color:var(--muted); margin-top:18px; }
+
+  .book-outer{ display:flex; flex-direction:column; align-items:center; }
+  .book-wrap{ display:flex; align-items:center; justify-content:center; gap:18px; width:100%; }
+  .book{
+    position:relative; display:flex; justify-content:center; height:min(62vh,560px); background:#1a1c22;
+    border-radius:6px; box-shadow:0 30px 70px rgba(0,0,0,0.55), 0 0 0 1px var(--line);
+    overflow:hidden; transition:opacity .18s ease, transform .18s ease;
+  }
+  .book.turning{ opacity:0.35; transform:scale(0.985); }
+  .book-page{ height:100%; display:flex; align-items:center; justify-content:center; background:#fff; }
+  .book-page img{ height:100%; width:auto; display:block; }
+  .left-page img{ object-position:right center; }
+  .book-spine{ position:absolute; left:50%; top:0; bottom:0; width:14px; margin-left:-7px; background:linear-gradient(90deg, rgba(0,0,0,0.18), rgba(0,0,0,0.02) 30%, rgba(0,0,0,0.02) 70%, rgba(0,0,0,0.18)); pointer-events:none; }
+  .book.cover-only .left-page{ display:none; }
+  .book.cover-only .book-spine{ display:none; }
+  .book.end-only .right-page{ display:none; }
+  .book.end-only .book-spine{ display:none; }
+  .book-nav{
+    width:46px; height:46px; border-radius:50%; background:var(--panel); border:1px solid var(--line);
+    color:var(--paper); font-size:22px; cursor:pointer; display:flex; align-items:center; justify-content:center;
+    transition:border-color .2s, background .2s, transform .15s; flex-shrink:0;
+  }
+  .book-nav:hover{ border-color:var(--accent); background:var(--panel-2); }
+  .book-nav:active{ transform:scale(0.92); }
+  .book-nav:disabled{ opacity:0.3; cursor:default; }
+  .book-nav:disabled:hover{ border-color:var(--line); background:var(--panel); }
+  .book-counter{ margin-top:16px; font-family:'Space Mono',monospace; font-size:12.5px; color:var(--muted); }
+  .book-jump{
+    margin-top:14px; display:flex; align-items:center; gap:10px; font-size:13px; color:var(--muted);
+    font-family:'Inter',sans-serif;
+  }
+  .book-jump input{
+    width:56px; text-align:center; background:var(--panel); border:1px solid var(--line); color:var(--paper);
+    border-radius:8px; padding:7px 6px; font-family:'Space Mono',monospace; font-size:13px;
+    -moz-appearance:textfield;
+  }
+  .book-jump input:focus{ outline:none; border-color:var(--accent); }
+  .book-jump input::-webkit-outer-spin-button, .book-jump input::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+  .book-jump button{
+    background:var(--panel-2); border:1px solid var(--line); color:var(--paper); border-radius:8px;
+    padding:7px 14px; font-size:12.5px; font-weight:700; cursor:pointer; transition:border-color .2s, background .2s;
+    font-family:'Inter',sans-serif;
+  }
+  .book-jump button:hover{ border-color:var(--accent); background:var(--panel); }
+
+  .thesis-card{
+    max-width:460px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:26px;
+  }
+  .thesis-page{
+    width:100%; aspect-ratio:210/297; background:#FBFAF7; border-radius:4px;
+    box-shadow:0 30px 70px rgba(0,0,0,0.55), 0 0 0 1px rgba(0,0,0,0.06);
+    position:relative; overflow:hidden; padding:9% 10% 8%;
+    display:flex; flex-direction:column; justify-content:space-between;
+    font-family:'Merriweather',serif; color:#1C1E24;
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .thesis-card:hover .thesis-page{ transform:translateY(-4px); box-shadow:0 40px 90px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,0,0,0.06); }
+  .thesis-page-header{ text-align:center; }
+  .thesis-uni{ font-family:'Inter',sans-serif; font-weight:800; font-size:12.5px; line-height:1.35; letter-spacing:0.01em; }
+  .thesis-school{ font-family:'Inter',sans-serif; font-weight:500; font-size:9.5px; color:#666; margin-top:5px; letter-spacing:0.03em; }
+  .thesis-page-body{ text-align:center; margin:6% 0; }
+  .thesis-label{ font-family:'Inter',sans-serif; font-weight:700; font-size:10px; text-transform:uppercase; letter-spacing:0.18em; color:#3D6BFF; margin-bottom:14px; }
+  .thesis-page-title{ font-size:clamp(11.5px,2.1vw,14.5px); line-height:1.5; font-weight:700; }
+  .thesis-divider{ width:40px; height:2px; background:#1C1E24; margin:16px auto; opacity:0.6; }
+  .thesis-degree{ font-family:'Inter',sans-serif; font-size:9.5px; line-height:1.6; color:#444; }
+  .thesis-degree strong{ font-family:'Merriweather',serif; font-size:11px; }
+  .thesis-page-footer{ text-align:center; font-family:'Inter',sans-serif; font-size:8.5px; line-height:1.7; color:#555; }
+  .thesis-page-footer strong{ color:#1C1E24; }
+  .thesis-grade-stamp{
+    position:absolute; top:8%; right:8%; width:58px; height:58px; border-radius:50%;
+    border:2.5px solid var(--accent); color:var(--accent); font-family:'Space Mono',monospace;
+    font-weight:700; font-size:10.5px; line-height:1.25; text-align:center; display:flex;
+    align-items:center; justify-content:center; transform:rotate(-14deg); letter-spacing:0.04em;
+  }
+
+  @media (max-width:760px){
+    .book{ height:42vh; }
+    .book-nav{ width:38px; height:38px; font-size:18px; }
+  }
+
+  @media (max-width:760px){
+    .hero-inner{ flex-direction:column; text-align:center; }
+    .hero p.tagline{ max-width:100%; }
+    .hero-actions{ justify-content:center; flex-wrap:wrap; }
+    nav{ padding:14px 5%; }
+    .nav-links{ gap:14px; }
+    .nav-links a:not(.btn-linkedin){ display:none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="ticker-wrap">
+    <div class="ticker mono">CONTENT&nbsp;CREATION&nbsp;•&nbsp;SOCIAL&nbsp;MEDIA&nbsp;•&nbsp;SEO&nbsp;•&nbsp;VIDEO&nbsp;PRODUKTION&nbsp;•&nbsp;GRAFIKDESIGN&nbsp;•&nbsp;ONLINE-MARKETING&nbsp;•&nbsp;CONTENT&nbsp;CREATION&nbsp;•&nbsp;SOCIAL&nbsp;MEDIA&nbsp;•&nbsp;SEO&nbsp;•&nbsp;VIDEO&nbsp;PRODUKTION&nbsp;•&nbsp;GRAFIKDESIGN&nbsp;•&nbsp;ONLINE-MARKETING&nbsp;•&nbsp;</div>
+  </div>
+
+  <nav>
+    <div class="nav-name">JH</div>
+    <div class="nav-links">
+      <a href="#gutefrage">Gutefrage.net</a>
+      <a href="#schalke">Schalke 04</a>
+      <a href="#studium">Studium</a>
+      <a class="btn-linkedin" href="https://www.linkedin.com/in/jannis-heinig-252617291/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-photo-wrap">
+        <img src="photo.png" alt="Jannis Heinig">
+      </div>
+      <div>
+        <div class="eyebrow">PORTFOLIO</div>
+        <h1>JANNIS<br>HEINIG</h1>
+        <div class="role">MEDIENMANAGER</div>
+        <p class="tagline">Content Creator und Marketingmanager mit Leidenschaft für Sport und digitale Formate — von der Grafik über das Reel bis zur fertigen Kampagne.</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#gutefrage">Zur Arbeit ↓</a>
+          <a class="btn-ghost" href="https://www.linkedin.com/in/jannis-heinig-252617291/" target="_blank" rel="noopener">LinkedIn-Profil</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block reveal" id="gutefrage">
+    <div class="section-head">
+      <span class="tag">WERKSTUDENT</span>
+      <h2>Gutefrage.net — Content Creation</h2>
+    </div>
+    <p class="section-sub">UGC-Grafiken und Video-Reels rund um Sport und Lifestyle-Themen — konzipiert, gestaltet und produziert für die App 3house von Gutefrage.net.</p>
+
+    <h3 class="subhead">Grafik-Design</h3>
+    <div class="gallery">
+      <div class="card" data-img="nba.jpg">
+        <img src="nba.jpg" alt="NBA Draft Prospect Card">
+        <span class="zoom-hint">Klicken zum Vergrößern ⤢</span>
+        <div class="card-cap"><div class="t">NBA Draft Prospect Card</div><div class="d">Labari Philon Jr. — Statistiken & Skill-Tags</div></div>
+      </div>
+      <div class="card" data-img="fussball.jpg">
+        <img src="fussball.jpg" alt="Fußball Performance Card">
+        <span class="zoom-hint">Klicken zum Vergrößern ⤢</span>
+        <div class="card-cap"><div class="t">Fußball Performance Card</div><div class="d">Kerim Alajbegović — Scouting-Kennzahlen</div></div>
+      </div>
+      <div class="card" data-img="wwe.jpg">
+        <img src="wwe.jpg" alt="WWE Eras Infografik">
+        <span class="zoom-hint">Klicken zum Vergrößern ⤢</span>
+        <div class="card-cap"><div class="t">WWE Eras Infografik</div><div class="d">Die Epochen der WWE-Geschichte im Überblick</div></div>
+      </div>
+      <div class="card" data-img="fifa.jpg">
+        <img src="fifa.jpg" alt="Karrieremodus Talente">
+        <span class="zoom-hint">Klicken zum Vergrößern ⤢</span>
+        <div class="card-cap"><div class="t">Karrieremodus Talente</div><div class="d">Gaming-Content für den EA FC Karrieremodus</div></div>
+      </div>
+      <div class="card" data-img="diet.jpg">
+        <img src="diet.jpg" alt="App-Vergleich Ernährungstracking">
+        <span class="zoom-hint">Klicken zum Vergrößern ⤢</span>
+        <div class="card-cap"><div class="t">App-Vergleich Ernährungstracking</div><div class="d">Yazio, Lifesum & MyFitnessPal im Vergleich</div></div>
+      </div>
+    </div>
+
+    <h3 class="subhead">Video-Content</h3>
+    <div class="reels">
+      <div class="reel-frame">
+        <video controls preload="metadata" poster="trikots_poster_hi.jpg" playsinline>
+          <source src="trikots_hi.mp4" type="video/mp4">
+        </video>
+        <div class="reel-cap"><div class="t">Trikot-Vorstellung</div><div class="d">Talking-Head-Reel im Vertikalformat</div></div>
+      </div>
+      <div class="reel-frame">
+        <video controls preload="metadata" poster="flatastic_poster_hi.jpg" playsinline>
+          <source src="flatastic_hi.mp4" type="video/mp4">
+        </video>
+        <div class="reel-cap"><div class="t">Flatastic</div><div class="d">App-Vorstellung im Reel-Format</div></div>
+      </div>
+      <div class="reel-frame">
+        <video controls preload="metadata" poster="caprese_poster_hi.jpg" playsinline>
+          <source src="caprese_hi.mp4" type="video/mp4">
+        </video>
+        <div class="reel-cap"><div class="t">Caprese Bacon Ciabatta</div><div class="d">Rezept-Reel: Zubereitung Schritt für Schritt</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block reveal" id="schalke">
+    <div class="section-head">
+      <span class="tag">PRAKTIKUM</span>
+      <h2>FC Schalke 04 — Social Media</h2>
+    </div>
+    <p class="section-sub">Auswahl an Instagram-Beiträgen, entstanden während meines Praktikums im Social-Media-Team des FC Schalke 04. Auf das Bild klicken öffnet den Beitrag direkt auf Instagram.</p>
+    <div class="insta-grid">
+      <a class="insta-card" href="https://www.instagram.com/reel/DDrqgBDoU_7/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener">
+        <img src="ig_sylla.jpg" alt="Moussa Sylla Torjubel">
+        <div class="veil"></div>
+        <div class="play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="lbl">Reel ansehen ↗</div>
+      </a>
+      <a class="insta-card" href="https://www.instagram.com/reel/DDr1sbxO-gu/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener">
+        <img src="ig_img9749.jpg" alt="Instagram Reel">
+        <div class="veil"></div>
+        <div class="play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="lbl">Reel ansehen ↗</div>
+      </a>
+      <a class="insta-card" href="https://www.instagram.com/reel/DAszXnQIdQc/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener">
+        <img src="ig_ultras.jpg" alt="Schalke Ultras Support">
+        <div class="veil"></div>
+        <div class="play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="lbl">Reel ansehen ↗</div>
+      </a>
+      <a class="insta-card" href="https://www.instagram.com/p/DBQyd1no3Jv/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener">
+        <img src="ig_template.jpg" alt="Spieltag Template Hannover 96 gegen Schalke 04">
+        <div class="veil"></div>
+        <div class="play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="lbl">Post ansehen ↗</div>
+      </a>
+      <a class="insta-card" href="https://www.instagram.com/reel/DCjpOwrohTB/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener">
+        <img src="ig_frage.jpg" alt="Frage der Woche">
+        <div class="veil"></div>
+        <div class="play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="lbl">Reel ansehen ↗</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="block reveal" id="studium">
+    <div class="section-head">
+      <span class="tag">STUDIUM</span>
+      <h2>Arbeitsproben aus dem Studium</h2>
+    </div>
+
+
+    <h3 class="subhead">Podcast-Produktion</h3>
+    <div class="podcast-grid">
+      <a class="podcast-card" href="https://open.spotify.com/episode/799B7b6Z6I3IghvBKVGlSM?si=Zu_HZJZFR7G5x2tbISc1Ng" target="_blank" rel="noopener">
+        <div class="podcast-cover">
+          <img src="https://i.scdn.co/image/ab6765630000ba8a0a85635d8b293a2069d8164a" alt="wü2go - grün unterwegs Cover" loading="lazy">
+          <div class="play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="podcast-body">
+          <div class="show">wü2go — grün unterwegs</div>
+          <div class="t">2. Das heißt Straba</div>
+          <div class="meta">25 Min · Nov 2022</div>
+          <div class="d">Die Straßenbahnen in Würzburg mit persönlichen Storys, FunFacts und einem Experten-Interview.</div>
+        </div>
+      </a>
+      <a class="podcast-card" href="https://open.spotify.com/episode/1M10eW270PZuqktL9A2jCc?si=sgz0bqybRDmd4KJk5Ecv2Q" target="_blank" rel="noopener">
+        <div class="podcast-cover">
+          <img src="https://i.scdn.co/image/ab6765630000ba8a2d5a5538f6dc8de0518ad864" alt="wü2go - grün unterwegs Cover" loading="lazy">
+          <div class="play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="podcast-body">
+          <div class="show">wü2go — grün unterwegs</div>
+          <div class="t">8. Die Pendelprofis — Sophia und Jannis decken auf</div>
+          <div class="meta">42 Min · Dez 2022</div>
+          <div class="d">Anekdoten vom Pendeln mit Bahn & Co, inklusive Quiz und der beliebten 5€-Challenge.</div>
+        </div>
+      </a>
+      <a class="podcast-card" href="https://open.spotify.com/episode/2J0fczNaem9OKhGZ0CpSJr?si=CKd6Hqp4R3KkNyrcUXJulw" target="_blank" rel="noopener">
+        <div class="podcast-cover">
+          <img src="https://i.scdn.co/image/ab6765630000ba8a9dcbf7cfda04b72d3fd3701c" alt="Zurückgespult Cover" loading="lazy">
+          <div class="play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="podcast-body">
+          <div class="show">Zurückgespult</div>
+          <div class="t">#11 Mediennutzung und digitale Erziehung</div>
+          <div class="meta">23 Min · Aug 2025</div>
+          <div class="d">Ein Rückblick auf die eigene Mediennutzung in der Kindheit und wie sich digitale Erziehung heute verändert.</div>
+        </div>
+      </a>
+      <a class="podcast-card" href="https://open.spotify.com/episode/2kmuaG46SdvWxGUhLNF1s4?si=IBiNkCRBTzy0glTrQfFFIw" target="_blank" rel="noopener">
+        <div class="podcast-cover">
+          <img src="https://i.scdn.co/image/ab6765630000ba8a13394710816734af9a812afd" alt="Verschwört und Zugehört Cover" loading="lazy">
+          <div class="play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="podcast-body">
+          <div class="show">Verschwört und Zugehört</div>
+          <div class="t">#8 Hinter der Maske — Corona und die große Verschwörung</div>
+          <div class="meta">30 Min · Aug 2025</div>
+          <div class="d">Ein Blick auf die bekanntesten Verschwörungstheorien rund um die Corona-Pandemie.</div>
+        </div>
+      </a>
+    </div>
+
+
+    <h3 class="subhead">Produktbroschüre</h3>
+    <p class="section-sub" style="margin-bottom:24px;">Im Rahmen des Medienprojekts 2 habe ich zusammen mit anderen Kommilitonen eine Produktbroschüre neu gestaltet. Diese gilt nun als Vorlage für weitere Broschüren der Firma.</p>
+    <div class="book-outer">
+      <div class="book-wrap">
+        <button class="book-nav left" id="book-prev" aria-label="Vorherige Seite">‹</button>
+        <div class="book" id="book">
+          <div class="book-page left-page"><img id="page-left" src="" alt=""></div>
+          <div class="book-page right-page"><img id="page-right" src="" alt=""></div>
+          <div class="book-spine"></div>
+        </div>
+        <button class="book-nav right" id="book-next" aria-label="Nächste Seite">›</button>
+      </div>
+      <div class="book-counter" id="book-counter">Seite 1 von 36</div>
+      <div class="book-jump">
+        <span>Zu Seite</span>
+        <input type="number" id="book-jump-input" min="1" max="36" value="1" aria-label="Seitenzahl eingeben">
+        <span>springen</span>
+        <button id="book-jump-go">Los ↵</button>
+      </div>
+    </div>
+
+    <h3 class="subhead">Bachelorarbeit</h3>
+    <div class="thesis-card">
+      <div class="thesis-page">
+        <div class="thesis-grade-stamp">NOTE<br>1,7</div>
+        <div class="thesis-page-header">
+          <div class="thesis-uni">Technische Hochschule<br>Würzburg-Schweinfurt</div>
+          <div class="thesis-school">THWS Business School</div>
+        </div>
+        <div class="thesis-page-body">
+          <div class="thesis-label">Bachelorarbeit</div>
+          <div class="thesis-page-title">Wie lässt sich auf Basis theoretischer Modelle und empirischer Fallstudien ein Schema zur Analyse der Krisenkommunikation von Sportvereinen und Athleten bei Shitstorms in sozialen Medien entwickeln?</div>
+          <div class="thesis-divider"></div>
+          <div class="thesis-degree">zur Erlangung des akademischen Grades<br><strong>Bachelor of Arts</strong></div>
+        </div>
+        <div class="thesis-page-footer">
+          <div><strong>Jannis Heinig</strong> · Matrikel-Nr. 5722020</div>
+          <div>bei Prof. Dr. Steffen Hillebrecht · Fach Medienmanagement</div>
+          <div>Wintersemester 2025/26</div>
+        </div>
+      </div>
+      <a class="btn-primary thesis-dl" href="thesis/Bachelorarbeit_Jannis_Heinig.pdf" download="Bachelorarbeit_Jannis_Heinig.pdf">PDF herunterladen ↓</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="display">JANNIS HEINIG</div>
+    <a class="btn-primary" href="https://www.linkedin.com/in/jannis-heinig-252617291/" target="_blank" rel="noopener">LinkedIn-Profil ansehen ↗</a>
+    <p>Medienmanager · Content Creation, Social Media & Marketingmanager</p>
+  </footer>
+
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-close" id="lightbox-close">✕</div>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => {
+        lightboxImg.src = card.getAttribute('data-img');
+        lightbox.classList.add('open');
+      });
+    });
+    document.getElementById('lightbox-close').addEventListener('click', () => lightbox.classList.remove('open'));
+    lightbox.addEventListener('click', (e) => { if(e.target === lightbox) lightbox.classList.remove('open'); });
+    document.addEventListener('keydown', (e) => { if(e.key === 'Escape') lightbox.classList.remove('open'); });
+
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if(entry.isIntersecting){ entry.target.classList.add('in'); } });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => io.observe(el));
+
+    document.querySelectorAll('video').forEach(v => {
+      v.addEventListener('play', () => {
+        document.querySelectorAll('video').forEach(other => { if(other !== v) other.pause(); });
+      });
+    });
+
+    // Product brochure book viewer
+    const brochurePages = ["brochure/page-01.jpg","brochure/page-02.jpg","brochure/page-03.jpg","brochure/page-04.jpg","brochure/page-05.jpg","brochure/page-06.jpg","brochure/page-07.jpg","brochure/page-08.jpg","brochure/page-09.jpg","brochure/page-10.jpg","brochure/page-11.jpg","brochure/page-12.jpg","brochure/page-13.jpg","brochure/page-14.jpg","brochure/page-15.jpg","brochure/page-16.jpg","brochure/page-17.jpg","brochure/page-18.jpg","brochure/page-19.jpg","brochure/page-20.jpg","brochure/page-21.jpg","brochure/page-22.jpg","brochure/page-23.jpg","brochure/page-24.jpg","brochure/page-25.jpg","brochure/page-26.jpg","brochure/page-27.jpg","brochure/page-28.jpg","brochure/page-29.jpg","brochure/page-30.jpg","brochure/page-31.jpg","brochure/page-32.jpg","brochure/page-33.jpg","brochure/page-34.jpg","brochure/page-35.jpg","brochure/page-36.jpg"];
+    const totalPages = brochurePages.length;
+    let spreadIndex = 0; // 0 = cover only, 1.. = pairs starting at page 2
+
+    function spreadToPages(idx) {
+      if (idx === 0) return [null, 1];
+      const first = 2 + (idx - 1) * 2;
+      const second = first + 1;
+      return [first, second <= totalPages ? second : null];
+    }
+    function maxSpreadIndex() {
+      const remaining = totalPages - 1;
+      return 1 + Math.ceil(remaining / 2) - 1;
+    }
+
+    const bookEl = document.getElementById('book');
+    const pageLeftEl = document.getElementById('page-left');
+    const pageRightEl = document.getElementById('page-right');
+    const counterEl = document.getElementById('book-counter');
+    const prevBtn = document.getElementById('book-prev');
+    const nextBtn = document.getElementById('book-next');
+
+    function renderSpread() {
+      const [left, right] = spreadToPages(spreadIndex);
+      const isCover = left === null;
+      const isEnd = !isCover && right === null;
+      bookEl.classList.toggle('cover-only', isCover);
+      bookEl.classList.toggle('end-only', isEnd);
+      if (isCover) {
+        pageRightEl.src = brochurePages[0]; pageRightEl.alt = 'Seite 1';
+        counterEl.textContent = 'Seite 1 von ' + totalPages;
+      } else if (isEnd) {
+        pageLeftEl.src = brochurePages[left - 1]; pageLeftEl.alt = 'Seite ' + left;
+        counterEl.textContent = 'Seite ' + left + ' von ' + totalPages;
+      } else {
+        pageLeftEl.src = brochurePages[left - 1]; pageLeftEl.alt = 'Seite ' + left;
+        pageRightEl.src = brochurePages[right - 1]; pageRightEl.alt = 'Seite ' + right;
+        counterEl.textContent = 'Seite ' + left + '–' + right + ' von ' + totalPages;
+      }
+      prevBtn.disabled = spreadIndex === 0;
+      nextBtn.disabled = spreadIndex >= maxSpreadIndex();
+      if (typeof jumpInput !== 'undefined') { jumpInput.value = isCover ? 1 : left; }
+    }
+
+    function goToSpread(idx) {
+      if (idx < 0 || idx > maxSpreadIndex()) return;
+      bookEl.classList.add('turning');
+      setTimeout(() => {
+        spreadIndex = idx;
+        renderSpread();
+        bookEl.classList.remove('turning');
+      }, 160);
+    }
+
+    prevBtn.addEventListener('click', () => goToSpread(spreadIndex - 1));
+    nextBtn.addEventListener('click', () => goToSpread(spreadIndex + 1));
+    document.addEventListener('keydown', (e) => {
+      const bookVisible = bookEl.getBoundingClientRect().top < window.innerHeight && bookEl.getBoundingClientRect().bottom > 0;
+      if (!bookVisible) return;
+      if (document.activeElement === jumpInput) return;
+      if (e.key === 'ArrowRight') goToSpread(spreadIndex + 1);
+      if (e.key === 'ArrowLeft') goToSpread(spreadIndex - 1);
+    });
+
+    const jumpInput = document.getElementById('book-jump-input');
+    const jumpGoBtn = document.getElementById('book-jump-go');
+    function pageToSpreadIndex(pageNum) {
+      if (pageNum <= 1) return 0;
+      return 1 + Math.floor((pageNum - 2) / 2);
+    }
+    function doJump() {
+      let n = parseInt(jumpInput.value, 10);
+      if (isNaN(n)) return;
+      n = Math.min(Math.max(n, 1), totalPages);
+      jumpInput.value = n;
+      goToSpread(pageToSpreadIndex(n));
+    }
+    jumpGoBtn.addEventListener('click', doJump);
+    jumpInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') doJump(); });
+
+    renderSpread();
+  </script>
+
+</body>
+</html>
